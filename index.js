@@ -58,9 +58,9 @@ app.post('/', function (req, res) {
 });
 
 // Sets about page handle
-app.get('/about.html', function (req, res) {
-    res.render('about');
-});
+// app.get('/about.html', function (req, res) {
+//     res.render('about');
+// });
 
 
 // Set static folder 
