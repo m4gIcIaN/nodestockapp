@@ -1,2 +1,19 @@
-<h1>This is mt homepage</h1>
-<p>{{ stuff }}</p>
+<h1>{{ stock.companyName }}</h1>
+<br />
+<strong> Latest Price: </strong>${{ stock.latestPrice}}><br />
+<strong> Previous Close: </strong>${{ stock.previousClose}}<br />
+<strong> Percent Change: </strong>{{ stock.changePercent}}%<br />
+<strong> Market Cap: </strong>${{ stock.marketCap}}<br />
+<strong> YTD change: </strong>{{ stock.ytdChange}}<br />
+<strong> 52 week High: </strong>${{ stock.week52High}}<br />
+<strong> 52 week Low: </strong>${{ stock.week52Low}}<br />
+
+
+
+
+
+<!--
+{{#each stock}}
+	{{@key}} | {{@this}}<br />
+{{/each}}
+-->
