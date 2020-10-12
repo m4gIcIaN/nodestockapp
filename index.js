@@ -17,6 +17,10 @@ function call_api(finishedAPI, ticker){
 			return console.log(err);
 		}
 
+		if (res.statusCode > 399) {
+			finishedAPI({'status': 'incorrect'});
+		}
+
 		if (res.statusCode === 200) {
 			// console.log(body);
 		 	finishedAPI(body);
@@ -42,9 +46,14 @@ app.get('/', function (req, res) {
 // Sets home page post handle
 app.post('/', function (req, res) {
 	call_api(function(doneAPI) {
-			res.render('home', {
-	    	stock: doneAPI,
-   		});
+		console.log(doneAPI);
+		if (doneAPI.status !== 'incorrect') {
+			res.render('stock', {
+		    	stock: doneAPI
+	   		});
+		} else {
+			res.render('home', {});
+		}
 	}, req.body.stock_ticker);
 });
 
