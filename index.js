@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 5000;
 
 // API KEY pk_759c1cb0a6ca42c999b381c5e92014e3 
 // create call api function
-function call_api(finishedAPI, ticker){
-	request('https://cloud.iexapis.com/stable/stock/'+ticker+'/quote?token=pk_759c1cb0a6ca42c999b381c5e92014e3', { json: true}, (err, res, body) => {
+function call_basic(finishedAPI, ticker){
+	request('https://cloud.iexapis.com/stable/stock/'+ticker+'/quote?token=<token here>', { json: true}, (err, res, body) => {
 		if (err) {
 			return console.log(err);
 		}
@@ -27,6 +27,18 @@ function call_api(finishedAPI, ticker){
 		}
 	});
 }
+
+function call_balance_sheet(ticker){
+	request('https://cloud.iexapis.com/stable/stock/'+ticker+'/balance-sheet?<token here>', { json: true}, (err, res, body) => {
+		return body;
+	});
+}
+
+function call_cash_flow(ticker){
+	request('https://cloud.iexapis.com/stable/stock/'+ticker+'/cash-flow?<token here>', { json: true}, (err, res, body) => {
+		return body;
+	});
+}
 // Set handlebars middleware
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -36,20 +48,25 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // Sets home page get handle
 app.get('/', function (req, res) {
-	call_api(function(doneAPI) {
+	call_basic(function(doneAPI) {
 			res.render('home', {
-	    	stock: doneAPI
-   		});
+	    		stock: doneAPI
+   			});
+
 	}, 'fb');
 });
 
 // Sets home page post handle
 app.post('/', function (req, res) {
-	call_api(function(doneAPI) {
+	const balance_sheet = call_balance_sheet(req.body.stock_ticker);
+	const cash_flow = call_cash_flow(req.body.stock_ticker);
+	call_basic(function(doneAPI) {
 		console.log(doneAPI);
 		if (doneAPI.status !== 'incorrect') {
 			res.render('stock', {
-		    	stock: doneAPI
+		    	stock: doneAPI,
+		    	bal: balance_sheet,
+		    	cash: cash_flow
 	   		});
 		} else {
 			res.render('home', {});

@@ -4,14 +4,40 @@
 <strong> Previous Close: </strong>${{ stock.previousClose}}<br />
 <strong> Percent Change: </strong>{{ stock.changePercent}}%<br />
 <strong> Market Cap: </strong>${{ stock.marketCap}}<br />
-<strong> YTD change: </strong>{{ stock.ytdChange}}<br />
+<strong> YTD change: </strong>{{ stock.ytdChange }}%<br />
 <strong> 52 week High: </strong>${{ stock.week52High}}<br />
 <strong> 52 week Low: </strong>${{ stock.week52Low}}<br />
 
+<br />
+<br />
+<br />
 
+<strong> Current Cash: </strong> 4{{ bal.currentCash}} <br />
+<strong> Inventory: </strong> 4{{ bal.inventory}} <br />
+<strong> Short Term Investments: </strong> 4{{ bal.shortTermInvestments}} <br />
+<strong> Long Term Investments: </strong> 4{{ bal.longTermInvestments}} <br />
+<strong> Current Assets: </strong> 4{{ bal.currentAssets}} <br />
+<strong> Receivables: </strong> 4{{ bal.receivables}} <br />
+<strong> Payables: </strong> 4{{ bal.accountsPayable}} <br />
+<strong> Current Liabilities: </strong> 4{{ bal.totalCurrentLiabilities}} <br />
+<strong> Retained Earnings: </strong> 4{{ bal.retainedEarnings}} <br />
 
+<br />
+<br />
+<br />
 
+<strong> Net Income: </strong> 4{{ cash.netIncome}} <br />
+<strong> Cash Flow: </strong> 4{{ cash.cashFlow}} <br />
+<strong> Net Borrowings: </strong> 4{{ cash.netBorrowings}} <br />
+<strong> Cash Flow Financing: </strong> 4{{ cash.cashFlowFinancing}} <br />
 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <!--
 {{#each stock}}
 	{{@key}} | {{@this}}<br />
